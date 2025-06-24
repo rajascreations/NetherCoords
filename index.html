@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Nether Portal Calculator</title>
+
+  <!-- Minecraft Pixel Font -->
+
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <style>
+
+    :root {
+
+      --primary-color: #222;
+
+      --accent-color: #3ec5ff;
+
+      --bg-color: #ffffff;
+
+      --box-color: #f4f4f4;
+
+      --border-color: #ccc;
+
+    }
+
+    * {
+
+      box-sizing: border-box;
+
+    }
+
+    body {
+
+      margin: 0;
+
+      font-family: 'Press Start 2P', monospace;
+
+      background-color: var(--bg-color);
+
+      color: var(--primary-color);
+
+      text-align: center;
+
+      padding: 2rem 1rem;
+
+    }
+
+    h1 {
+
+      background-color: var(--accent-color);
+
+      color: white;
+
+      padding: 1rem;
+
+      font-size: 1rem;
+
+      text-shadow: 1px 1px #000;
+
+      margin: 0 0 2rem;
+
+    }
+
+    .section-title {
+
+      font-size: 0.9rem;
+
+      margin: 1.5rem 0 0.8rem;
+
+      text-shadow: 0.5px 0.5px #999;
+
+    }
+
+    .coord-box {
+
+      background-color: var(--box-color);
+
+      border: 2px solid var(--border-color);
+
+      border-radius: 8px;
+
+      max-width: 350px;
+
+      margin: 0 auto;
+
+      padding: 1rem;
+
+    }
+
+    .coord-row {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 0.5rem;
+
+      margin-bottom: 1rem;
+
+    }
+
+    .coord-group {
+
+      flex: 1;
+
+    }
+
+    label {
+
+      font-size: 0.6rem;
+
+      display: block;
+
+      margin-bottom: 0.25rem;
+
+      text-align: left;
+
+    }
+
+    input[type="number"] {
+
+      width: 100%;
+
+      padding: 0.5rem;
+
+      border: 2px solid #aaa;
+
+      border-radius: 4px;
+
+      background: white;
+
+      font-family: 'Press Start 2P', monospace;
+
+      font-size: 0.6rem;
+
+      color: var(--primary-color);
+
+    }
+
+    .reset-button {
+
+      margin-top: 1rem;
+
+      background-color: red;
+
+      color: white;
+
+      border: none;
+
+      padding: 0.6rem 1.2rem;
+
+      font-size: 0.6rem;
+
+      font-family: 'Press Start 2P', monospace;
+
+      border-radius: 5px;
+
+      cursor: pointer;
+
+    }
+
+    .faq {
+
+      max-width: 600px;
+
+      margin: 2rem auto;
+
+      text-align: left;
+
+      background-color: #f8f8f8;
+
+      border: 2px solid #ddd;
+
+      border-radius: 8px;
+
+      padding: 1rem;
+
+      font-size: 0.6rem;
+
+      color: #333;
+
+    }
+
+    .faq h2 {
+
+      font-size: 0.7rem;
+
+      margin-bottom: 0.5rem;
+
+      text-align: center;
+
+    }
+
+    .faq p {
+
+      line-height: 1.6;
+
+      margin-bottom: 0.6rem;
+
+    }
+
+    .footer {
+
+      font-size: 0.5rem;
+
+      margin-top: 2rem;
+
+      color: #555;
+
+    }
+
+    .footer a {
+
+      color: var(--accent-color);
+
+      text-decoration: none;
+
+    }
+
+    .footer a:hover {
+
+      text-decoration: underline;
+
+    }
+
+    @media (max-width: 500px) {
+
+      .coord-row {
+
+        flex-direction: column;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <h1>NETHER PORTAL CALCULATOR</h1>
+
+  <div class="section-title">OVERWORLD</div>
+
+  <div class="coord-box">
+
+    <div class="coord-row">
+
+      <div class="coord-group">
+
+        <label for="overX">X</label>
+
+        <input type="number" id="overX" value="0">
+
+      </div>
+
+      <div class="coord-group">
+
+        <label for="overY">Y</label>
+
+        <input type="number" id="overY" value="64">
+
+      </div>
+
+      <div class="coord-group">
+
+        <label for="overZ">Z</label>
+
+        <input type="number" id="overZ" value="0">
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="section-title">NETHER</div>
+
+  <div class="coord-box">
+
+    <div class="coord-row">
+
+      <div class="coord-group">
+
+        <label for="netherX">X</label>
+
+        <input type="number" id="netherX" readonly>
+
+      </div>
+
+      <div class="coord-group">
+
+        <label for="netherY">Y</label>
+
+        <input type="number" id="netherY" readonly>
+
+      </div>
+
+      <div class="coord-group">
+
+        <label for="netherZ">Z</label>
+
+        <input type="number" id="netherZ" readonly>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <button class="reset-button" onclick="resetCoords()">RESET</button>
+
+  <div class="faq">
+
+    <h2>📌 How to Use</h2>
+
+    <p>1. Enter your coordinates in the Overworld (X, Y, Z).</p>
+
+    <p>2. The calculator will instantly convert to Nether coordinates (X ÷ 8, Z ÷ 8, Y stays same).</p>
+
+    <p>3. Build your Nether portal at the shown Nether coords to link correctly.</p>
+
+    <p>4. Portals will sync if built accurately on both sides.</p>
+
+    <p>5. Use the RESET button to clear values and start fresh.</p>
+
+  </div>
+
+  <div class="footer">
+
+    Made by Rajas | <a href="https://x.com/rajaslive" target="_blank">@rajaslive</a>
+
+  </div>
+
+  <script>
+
+    const overX = document.getElementById('overX');
+
+    const overY = document.getElementById('overY');
+
+    const overZ = document.getElementById('overZ');
+
+    const netherX = document.getElementById('netherX');
+
+    const netherY = document.getElementById('netherY');
+
+    const netherZ = document.getElementById('netherZ');
+
+    function updateNetherCoords() {
+
+      netherX.value = Math.floor(overX.value / 8);
+
+      netherY.value = overY.value;
+
+      netherZ.value = Math.floor(overZ.value / 8);
+
+    }
+
+    function resetCoords() {
+
+      overX.value = 0;
+
+      overY.value = 64;
+
+      overZ.value = 0;
+
+      updateNetherCoords();
+
+    }
+
+    overX.addEventListener('input', updateNetherCoords);
+
+    overY.addEventListener('input', updateNetherCoords);
+
+    overZ.addEventListener('input', updateNetherCoords);
+
+    updateNetherCoords();
+
+  </script>
+
+</body>
+
+</html>
+<!-- partial -->
+  
+</body>
+</html>
