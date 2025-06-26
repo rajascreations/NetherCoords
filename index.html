@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Nether Portal Calculator </title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <title>Nether Portal Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome for Discord Icon -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+
+  <style>
+    :root {
+      --bg: #000;
+      --text: #fff;
+      --muted: #bbb;
+      --accent: #a463f2;
+      --box: rgba(255, 255, 255, 0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1rem;
+      min-height: 100vh;
+      background-size: 300% 300%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .highlight {
+      color: var(--accent);
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      margin: 2rem 0 1rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .coord-box {
+      background: var(--box);
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 0 20px rgba(164, 99, 242, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+    }
+
+    .coord-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .coord-group {
+      flex: 1;
+    }
+
+    label {
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+      display: block;
+      color: var(--muted);
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 12px;
+      background-color: #1e1e1e;
+      color: white;
+      font-size: 1rem;
+      transition: 0.2s ease;
+    }
+
+    input[type="number"]:focus {
+      outline: 2px solid var(--accent);
+    }
+
+    .reset-button {
+      margin-top: 2rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.9rem 2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .reset-button:hover {
+      background: #8a52d8;
+    }
+
+    .discord-link {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .discord-link a {
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+    }
+
+    .discord-link a:hover {
+      color: #8a52d8;
+    }
+
+    .discord-link i {
+      vertical-align: middle;
+    }
+
+    .footer {
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Apple-style FAQ styles */
+
+    .faq {
+      max-width: 600px;
+      margin-top: 3rem;
+      padding: 0;
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
+      color: var(--text);
+      font-weight: 400;
+      font-feature-settings: "liga";
+      user-select: none;
+    }
+
+    .faq h2 {
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+      text-align: center;
+    }
+
+    .faq-item {
+      border-top: 1px solid rgba(255 255 255 / 0.15);
+      padding: 1.25rem 0;
+    }
+
+    .faq-item:first-of-type {
+      border-top: none;
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.125rem;
+      font-weight: 600;
+      text-align: left;
+      padding: 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: color 0.3s ease;
+      user-select: none;
+    }
+
+    .faq-question:hover,
+    .faq-question:focus {
+      color: var(--accent);
+      outline: none;
+    }
+
+    .arrow {
+      transition: transform 0.3s ease;
+      font-size: 1rem;
+      color: var(--muted);
+      margin-left: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .faq-question[aria-expanded="true"] .arrow {
+      transform: rotate(180deg);
+      color: var(--accent);
+    }
+
+    /* Animate slide toggle for answers */
+    .faq-answer {
+      color: var(--muted);
+      font-weight: 400;
+      line-height: 1.5;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      padding-left: 1rem;
+      border-left: 3px solid var(--accent);
+
+      /* Hidden by default */
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.35s ease, opacity 0.35s ease;
+    }
+
+    .faq-answer.show {
+      max-height: 300px; /* enough for content */
+      opacity: 1;
+    }
+
+    .faq-note {
+      margin-top: 2rem;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: var(--accent);
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 600;
+      text-align: center;
+      user-select: text;
+    }
+
+    @media (max-width: 500px) {
+      .coord-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1><span class="highlight">Nether Portal</span> Calculator</h1>
+
+  <div class="section-title">Overworld Coordinates</div>
+  <div class="coord-box">
+    <div class="coord-row">
+      <div class="coord-group">
+        <label for="overX">X</label>
+        <input type="number" id="overX" value="0" />
+      </div>
+      <div class="coord-group">
+        <label for="overY">Y</label>
+        <input type="number" id="overY" value="64" />
+      </div>
+      <div class="coord-group">
+        <label for="overZ">Z</label>
+        <input type="number" id="overZ" value="0" />
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">Nether Coordinates</div>
+  <div class="coord-box">
+    <div class="coord-row">
+      <div class="coord-group">
+        <label for="netherX">X</label>
+        <input type="number" id="netherX" readonly />
+      </div>
+      <div class="coord-group">
+        <label for="netherY">Y</label>
+        <input type="number" id="netherY" readonly />
+      </div>
+      <div class="coord-group">
+        <label for="netherZ">Z</label>
+        <input type="number" id="netherZ" readonly />
+      </div>
+    </div>
+  </div>
+
+  <button class="reset-button" onclick="resetCoords()">Reset</button>
+
+  <div class="discord-link">
+    <a
+      href="https://discord.gg/VjwHK3t8tj"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Join our Discord server"
+    >
+      <i class="fa-brands fa-discord"></i> Join our Discord
+    </a>
+  </div>
+
+  <div class="faq">
+    <h2>🧭 Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false" aria-controls="faq1" id="faq1-button">
+        What coordinates should I enter?
+        <span class="arrow" aria-hidden="true">&#x25BC;</span>
+      </button>
+      <div class="faq-answer" id="faq1" role="region" aria-labelledby="faq1-button">
+        Enter your Overworld X, Y, and Z coordinates in the inputs above.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false" aria-controls="faq2" id="faq2-button">
+        How are Nether coordinates calculated?
+        <span class="arrow" aria-hidden="true">&#x25BC;</span>
+      </button>
+      <div class="faq-answer" id="faq2" role="region" aria-labelledby="faq2-button">
+        The calculator divides the X and Z Overworld coordinates by 8. The Y coordinate remains unchanged.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false" aria-controls="faq3" id="faq3-button">
+        Why should I stand inside the portal frame before lighting it?
+        <span class="arrow" aria-hidden="true">&#x25BC;</span>
+      </button>
+      <div class="faq-answer" id="faq3" role="region" aria-labelledby="faq3-button">
+        Standing inside the portal frame helps Minecraft link portals correctly in the Overworld and Nether.
+      </div>
+    </div>
+
+    <div class="faq-note">
+      Tip: Always double-check your coordinates before building the portal for smooth linking.
+    </div>
+  </div>
+
+  <div class="footer">
+    Built by Rajas • <a href="https://x.com/rajaslive" target="_blank" rel="noopener noreferrer">@rajaslive</a>
+  </div>
+
+  <script>
+    const overX = document.getElementById("overX");
+    const overY = document.getElementById("overY");
+    const overZ = document.getElementById("overZ");
+    const netherX = document.getElementById("netherX");
+    const netherY = document.getElementById("netherY");
+    const netherZ = document.getElementById("netherZ");
+
+    function updateNetherCoords() {
+      netherX.value = Math.floor(overX.value / 8);
+      netherY.value = overY.value;
+      netherZ.value = Math.floor(overZ.value / 8);
+    }
+
+    function resetCoords() {
+      overX.value = 0;
+      overY.value = 64;
+      overZ.value = 0;
+      updateNetherCoords();
+    }
+
+    overX.addEventListener("input", updateNetherCoords);
+    overY.addEventListener("input", updateNetherCoords);
+    overZ.addEventListener("input", updateNetherCoords);
+
+    updateNetherCoords();
+
+    // FAQ Accordion functionality with smooth animation
+    document.querySelectorAll(".faq-question").forEach(button => {
+      button.addEventListener("click", () => {
+        const expanded = button.getAttribute("aria-expanded") === "true";
+        button.setAttribute("aria-expanded", !expanded);
+
+        const answer = document.getElementById(button.getAttribute("aria-controls"));
+        if (!expanded) {
+          answer.classList.add("show");
+          answer.style.maxHeight = answer.scrollHeight + "px";
+        } else {
+          answer.style.maxHeight = null;
+          answer.classList.remove("show");
+        }
+      });
+
+      // Initialize height for open answers (if any)
+      const answer = document.getElementById(button.getAttribute("aria-controls"));
+      answer.style.maxHeight = null;
+      answer.classList.remove("show");
+    });
+  </script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
