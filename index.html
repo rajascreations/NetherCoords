@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Nether Portal Calculator </title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nether Portal Calculator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #000;
+      --text: #fff;
+      --muted: #bbb;
+      --accent: #a463f2;
+      --box: rgba(255, 255, 255, 0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1rem;
+      min-height: 100vh;
+      background-size: 300% 300%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .highlight {
+      color: var(--accent);
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      margin: 2rem 0 1rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .coord-box {
+      background: var(--box);
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 0 20px rgba(164, 99, 242, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+    }
+
+    .coord-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .coord-group {
+      flex: 1;
+    }
+
+    label {
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+      display: block;
+      color: var(--muted);
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 12px;
+      background-color: #1e1e1e;
+      color: white;
+      font-size: 1rem;
+      transition: 0.2s ease;
+    }
+
+    input[type="number"]:focus {
+      outline: 2px solid var(--accent);
+    }
+
+    .reset-button {
+      margin-top: 2rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.9rem 2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .reset-button:hover {
+      background: #8a52d8;
+    }
+
+    .faq {
+      max-width: 600px;
+      margin-top: 3rem;
+      padding: 2rem;
+      background: var(--box);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    .faq h2 {
+      font-size: 1.3rem;
+      margin-bottom: 1.2rem;
+      text-align: center;
+      color: #fff;
+    }
+
+    .faq p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .faq-note {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: var(--accent);
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+    }
+
+    .footer {
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 500px) {
+      .coord-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1><span class="highlight">Nether Portal</span> Calculator</h1>
+
+  <div class="section-title">Overworld Coordinates</div>
+  <div class="coord-box">
+    <div class="coord-row">
+      <div class="coord-group">
+        <label for="overX">X</label>
+        <input type="number" id="overX" value="0">
+      </div>
+      <div class="coord-group">
+        <label for="overY">Y</label>
+        <input type="number" id="overY" value="64">
+      </div>
+      <div class="coord-group">
+        <label for="overZ">Z</label>
+        <input type="number" id="overZ" value="0">
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">Nether Coordinates</div>
+  <div class="coord-box">
+    <div class="coord-row">
+      <div class="coord-group">
+        <label for="netherX">X</label>
+        <input type="number" id="netherX" readonly>
+      </div>
+      <div class="coord-group">
+        <label for="netherY">Y</label>
+        <input type="number" id="netherY" readonly>
+      </div>
+      <div class="coord-group">
+        <label for="netherZ">Z</label>
+        <input type="number" id="netherZ" readonly>
+      </div>
+    </div>
+  </div>
+
+  <button class="reset-button" onclick="resetCoords()">Reset</button>
+
+  <div class="faq">
+    <h2>🧭 How It Works</h2>
+    <p>Enter your <strong>Overworld coordinates</strong> (X, Y, Z) above.</p>
+    <p>The calculator converts them into <strong>Nether coordinates</strong> using:</p>
+    <p><code>X ÷ 8</code> and <code>Z ÷ 8</code>, Y stays unchanged.</p>
+    <p>Build your portal at the resulting Nether coordinates to ensure they link.</p>
+
+    <div class="faq-note">Tip: Always stand inside the portal frame before lighting it for correct sync.</div>
+  </div>
+
+  <div class="footer">
+    Built by Rajas • <a href="https://x.com/rajaslive" target="_blank">@rajaslive</a>
+  </div>
+
+  <script>
+    const overX = document.getElementById('overX');
+    const overY = document.getElementById('overY');
+    const overZ = document.getElementById('overZ');
+    const netherX = document.getElementById('netherX');
+    const netherY = document.getElementById('netherY');
+    const netherZ = document.getElementById('netherZ');
+
+    function updateNetherCoords() {
+      netherX.value = Math.floor(overX.value / 8);
+      netherY.value = overY.value;
+      netherZ.value = Math.floor(overZ.value / 8);
+    }
+
+    function resetCoords() {
+      overX.value = 0;
+      overY.value = 64;
+      overZ.value = 0;
+      updateNetherCoords();
+    }
+
+    overX.addEventListener('input', updateNetherCoords);
+    overY.addEventListener('input', updateNetherCoords);
+    overZ.addEventListener('input', updateNetherCoords);
+
+    updateNetherCoords();
+  </script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
